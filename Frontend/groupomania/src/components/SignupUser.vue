@@ -40,6 +40,7 @@ export default {
    
     methods: {
         async createUser() {
+            this.$router.push("/");
             try {
                 await axios.post(
                     `http://localhost:5000/signup`,
@@ -50,7 +51,6 @@ export default {
                 );
                 this.email = "";
                 this.password = "";
-                window.location.href = "/";
             } catch (err) {
                 console.log(err);
             }
