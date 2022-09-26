@@ -1,37 +1,37 @@
-// import express
+// importation express
 import express from "express";
 
-// import function from controller
+// importation des fonctions des controllers
 import { showPosts, showPostById, createPost, updatePost, deletePost, votePost } from "../controllers/post.js";
 import { createUser, loginUser } from '../controllers/user.js';
 import { auth } from '../middlewares/auth.js';
 
-// init express router
+// initialisation express router
 const router = express.Router();
 
-// Get All Post
+// Récupérer tous les Post
 router.get('/posts', auth, showPosts);
 
-// Get Single Post
+// Récupérer un seul Post
 router.get('/posts/:id', auth, showPostById);
 
-// Create New Post
+// Créé un Post
 router.post('/posts', auth, createPost);
 
-//Vote on Post
+//Voter pour un Post
 router.post('/posts/vote', auth, votePost);
 
-// Update Post
+// Mettre à jour Post
 router.put('/posts/:id', auth, updatePost);
 
-// Delete Post
+// Supprimer Post
 router.delete('/posts/:id', auth, deletePost);
 
-// Signup
+// Inscription
 router.post('/signup', createUser);
 
-// Login
+// Connexion
 router.post('/login', loginUser);
 
-// export default router
+//exportation des routes afin qu'elles soient utilisées dans d'autres fichiers
 export default router;
