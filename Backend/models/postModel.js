@@ -3,7 +3,7 @@ import db from "../config/database.js";
 
 // Get All Posts
 export const getPosts = (result) => {
-    db.query("SELECT a.*,(SELECT COUNT(reactions_id) FROM reactions b WHERE a.post_id = b.post_id AND vote = 1) nombre_like,(SELECT COUNT(reactions_id) FROM reactions b WHERE a.post_id = b.post_id AND vote = -1) nombre_dislike FROM post a ORDER BY a.post_id DESC", (err, results) => {
+    db.query("SELECT a.*,(SELECT COUNT(reactions_id) FROM reactions b WHERE a.post_id = b.post_id AND vote = 1) nombre_like, (SELECT COUNT(reactions_id) FROM reactions b WHERE a.post_id = b.post_id AND vote = -1) nombre_dislike FROM post a ORDER BY a.post_id DESC", (err, results) => {
         if (err) {
             console.log(err);
             result(err, null);

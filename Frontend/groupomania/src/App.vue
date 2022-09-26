@@ -14,7 +14,6 @@
       <div class="container-fluid d-flex justify-content-end" v-if="['Signup'].includes($route.name)">
         <router-link to="/">Se connecter</router-link>
       </div>
-
     </div>
     <router-view />
   </div>
@@ -67,4 +66,3 @@ export default {
   color: #FD2D01;
 }
 </style>
-#FFD7D7

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Create' }" class="button is-success mt-5"><i class="fa-solid fa-plus"></i> Ajouter un nouveau post --{{ statut }}</router-link>
-    <div class=" container-fluid my-5  " v-for="item in items" :key="item.post_id">
-      <div class="container bg-white border rounded shadow pb-2">
+    <router-link :to="{ name: 'Create' }" class="button is-success mt-5 " ><i class="fa-solid fa-plus"></i> Ajouter un nouveau post </router-link>
+    <div class=" container-fluid my-5" v-for="item in items" :key="item.post_id">
+      <div class="container  border rounded shadow pb-2  add">
         <div class="container-fluid d-flex justify-content-end pt-2">
           <div class=" d-flex pr-4" v-if="user_id == item.user_id || statut == 1">
             <router-link :to="{ name: 'Edit', params: { id: item.post_id } }" class="button is-info is-small "><i class="fa-regular fa-pen-to-square lead text-dark"></i>
@@ -13,7 +13,8 @@
               <i class="fa-solid fa-trash lead text-dark"></i></a>
           </div>
         </div>
-        <div class="bg-transparent rounded my-1 text-primary">{{ item.post_name }}</div>
+        <div class="bg-transparent rounded my-1 text-dark font-weight-bold">{{ item.post_name }}</div>
+        <div class="d-flex justify-content-end my-1 text-dark font-italic"> post by User {{ item.user_id}}</div>
         <img class="rounded my-1 img-fluid" id="images" :src="item.post_image" />
         <div class="container-fluid d-flex">
           <div class="container lead" role="button" @click="like(item.post_id)">
@@ -39,7 +40,7 @@ export default {
     return {
       items: [],
       statut: localStorage.getItem("statut"),
-      user_id: localStorage.getItem('user_id')
+      user_id: localStorage.getItem('user_id'),
     };
   },
 
@@ -115,5 +116,7 @@ export default {
 </script>
  
 <style>
-
+.add {
+    background-color: #FFD7D7;
+  }
 </style>

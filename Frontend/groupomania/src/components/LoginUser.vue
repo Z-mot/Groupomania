@@ -4,8 +4,6 @@
             <div class="account-wrapper">
                 <h3 class="account-title">Se connecter</h3>
                 <p class="account-subtitle">pour accéder au réseau social GROUPOMANIA</p>
-
-                <!-- Account Form -->
                 <form>
                     <div class="form-group">
                         <label>Adresse email</label>
