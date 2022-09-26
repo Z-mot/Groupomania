@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-//import router from './router'
+//importation des composants
 import VueRouter from 'vue-router'
 import Create from './components/AddPost.vue'
 import Edit from './components/EditPost.vue'
@@ -12,6 +12,7 @@ Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 
+// Création des routes frontend en leur assignant leur composant
 const routes = [
   {
     name: 'Create',
@@ -28,7 +29,6 @@ const routes = [
     path: '/',
     component: Login
   },
-
   {
     name: 'Signup',
     path: '/signup',
@@ -44,7 +44,7 @@ const routes = [
 const router = new VueRouter({ mode: 'history', routes: routes })
 
 new Vue({
-  // init router
+  // initialisation de router
   router,
   render: h => h(App),
 }).$mount('#app')

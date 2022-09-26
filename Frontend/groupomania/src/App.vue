@@ -28,9 +28,12 @@ export default {
   },
 
   methods: {
+    // Création de la méthode Vue permettant à un utilisateur de se déconnecter
     async logOut() {
       try {
+        // On efface le local storage (dont le token)
         localStorage.clear();
+        // On renvoit à la page de connexion
         this.$router.push("/")
       } catch (err) {
         console.log(err);
