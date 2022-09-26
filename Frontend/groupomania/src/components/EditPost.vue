@@ -12,10 +12,10 @@
       </div>
     </div>
     <div class="field col">
-      <label class="label container">Image</label>
+      <label class="label container-fluid">Image</label>
       <img id="images" :src="postImage" alt="" />
       <div class="control">
-        <input type="file" ref="file" @change="previewFiles">
+        <input type="file" ref="file" id="file" @change="previewFiles">
       </div>
     </div>
     <div class="control">
@@ -37,18 +37,21 @@ export default {
       userId: "",
     };
   },
+  // Exécuter la méthode lors de la création de l'élément
   created: function () {
     this.showPostById();
   },
   methods: {
+    // Méthode Vue pour afficher le nom du fichier avant l'upload
     previewFiles() {
       this.file = document.querySelector('input[type=file]')['files'][0];
     },
-    // Get Product By Id
+    // Méthode Vue pour la récupération d'un Post
     async showPostById() {
       try {
         let webApiUrl = `http://localhost:5000/posts/${this.$route.params.id}`;
         let tokenStr = localStorage.getItem("token");
+        // Toujours envoyer dans le header de la requête le token pour que le middleware d'authentification du backend puisse autoriser l'accès
         const response = await axios.get(webApiUrl, { headers: { "Authorization": `Bearer ${tokenStr}` } });
         this.postName = response.data.post_name,
         this.postImage = response.data.post_image;
@@ -57,20 +60,51 @@ export default {
         console.log(err);
       }
     },
- 
-    // Update product
+    
+    // Méthode Vue permettant de mettre à jour le post
     async updatePost() {
-      let params = {
-        post_name: this.postName,
-        post_image: this.postImage,
-        user_id: this.userId,
-      };
+      try {
+        // si la modification porte uniquement sur le texte on met à jour que le texte
+        if (document.getElementById("file").value == "") {
+          let vm = this;
+          let dataPost = {
+            post_name: vm.postName,
+            post_image: vm.postImage,
+            user_id: localStorage.getItem("user_id"),
+          }
+          vm.updateData(dataPost);
+        } else {
+          // sinon on met à jour la totalité du post avec la nouvelle image (même éthode que dans le composant AddPost)
+          let base64String = "";
+          let vm = this;
+          let reader = new FileReader();
+          reader.onload = function () {
+            base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+            base64String = "data:image/png;base64," + base64String;
+            let dataPost = {
+              post_name: vm.postName,
+              post_image: base64String,
+              user_id: localStorage.getItem("user_id"),
+            }
+          vm.updateData(dataPost);
+          }
+          reader.readAsDataURL(this.file);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
+    // Méthode Vue pour la mise à jour d'un Post
+    async updateData(params) {
       try {
         let webApiUrl = `http://localhost:5000/posts/${this.$route.params.id}`;
         let tokenStr = localStorage.getItem("token");
+        // Toujours envoyer dans le header de la requête le token pour que le middleware d'authentification du backend puisse autoriser l'accès
         await axios.put(webApiUrl, params, { headers: { "Authorization": `Bearer ${tokenStr}` } });
         this.postName = "";
         this.postImage = "";
+        // On envoi l'utilisateur sur la page d'accueil
         this.$router.push("/home");
       } catch (err) {
         console.log(err);
