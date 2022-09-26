@@ -1,9 +1,11 @@
+// importation des fonctions depuis userModel
 import { signup, login } from "../models/userModel.js";
-/*var sha1 = ("sha1");*/
+// importation de SHA1 pour encoder le mot de passe
 import sha1 from "sha1";
+//importation de jsonwebtoken permettant de générer et décoder les tokens
 import jwt from "jsonwebtoken";
 
-// Create New User
+// Créer un nouvel utilisateur User avec encodage du mot de passe
 export const createUser = (req, res) => {
     const data = req.body;
     data.password = sha1(data.password);
@@ -16,6 +18,7 @@ export const createUser = (req, res) => {
     });
 }
 
+// Connexion d'un utilisateur avec vérification du mot de passe et création d'un token
 export const loginUser = (req, res) => {
     const data = req.body;
     data.password = sha1(data.password);

@@ -1,7 +1,7 @@
-// Import function from Post Model
+// Importation des fonctions depuis Post Model
 import { getPosts, getPostById, insertPost, updatePostById, deletePostById, voted, checkVote } from "../models/postModel.js";
 
-// Get All Posts
+// Récupérer tous les Posts
 export const showPosts = (req, res) => {
     getPosts((err, results) => {
         if (err) {
@@ -12,7 +12,7 @@ export const showPosts = (req, res) => {
     });
 }
 
-// Get Single Post 
+// Récupérer un seul Post 
 export const showPostById = (req, res) => {
     getPostById(req.params.id, (err, results) => {
         if (err) {
@@ -23,7 +23,7 @@ export const showPostById = (req, res) => {
     });
 }
 
-// Create New Post
+// Création d'un Post
 export const createPost = (req, res) => {
     const data = req.body;
     insertPost(data, (err, results) => {
@@ -35,7 +35,7 @@ export const createPost = (req, res) => {
     });
 }
 
-// Update Post
+// Mise à jour du Post
 export const updatePost = (req, res) => {
     const data = req.body;
     const id = req.params.id;
@@ -48,9 +48,10 @@ export const updatePost = (req, res) => {
     });
 }
 
-// Vote Post
+// Vote (like ou dislike) pour un Post en vérifiant avant si l'utilisateur a déjà voté pour le Post sélectionné
 export const votePost = (req, res) => {
     const data = req.body;
+    // Fonction permettant de vérifer si il y a déjà eu un vote par l'utilisateur sur ce Post
     checkVote(data, (err, results) => {
         if (err) {
             res.send(err);
@@ -58,6 +59,7 @@ export const votePost = (req, res) => {
             if(results[0].nombre_like > 0) {
                 res.json({message:"Vous avez déjà voté", error: 1});
             } else {
+                // Fonction pour ajouter un vote (like ou dislike)
                 voted(data, (err, results) => {
                     if (err) {
                         res.send(err);
@@ -70,27 +72,8 @@ export const votePost = (req, res) => {
     });
 }
 
-export const like = (req, res) => {
-    countLike((err, results) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(results);
-        }
-    });
-}
 
-export const dislike = (req, res) => {
-    countDislike((err, results) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(results);
-        }
-    });
-}
-
-// Delete Post
+// Suppression d'un Post
 export const deletePost = (req, res) => {
     const id = req.params.id;
     deletePostById(id, (err, results) => {
