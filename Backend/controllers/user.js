@@ -26,6 +26,7 @@ export const loginUser = (req, res) => {
         if (err) {
             res.send(err);
         } else {
+            // Dans la réponse nous renvoyons le statut de l'utilisateur ainsi que son id, son email et le token
             res.json({
                 statut: results[0].status,
                 user_id: results[0].user_id,
