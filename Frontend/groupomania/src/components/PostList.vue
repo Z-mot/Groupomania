@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="bg-transparent rounded my-1 text-dark font-weight-bold">{{ item.post_name }}</div>
-        <div class="d-flex justify-content-end my-1 text-dark font-italic"> post by User {{ item.user_id}}</div>
+        <div class="d-flex justify-content-end my-1 text-dark font-italic" v-if="statut == 1"> post by User {{ item.user_id}}</div>
         <img class="rounded my-1 img-fluid" id="images" :src="item.post_image" />
         <div class="container-fluid d-flex">
           <div class="container lead" role="button" @click="like(item.post_id)">
