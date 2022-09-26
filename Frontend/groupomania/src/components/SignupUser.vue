@@ -39,9 +39,11 @@ export default {
     },
    
     methods: {
+        // Création de la méthode Vue permettant la création de l'utilisateur dans la BDD
         async createUser() {
             this.$router.push("/");
             try {
+                // avec Axiox qui nous facilite les requêtes Ajax dans leur écriture nous envoyons sur l'API l'email et le password du nouvel utilisateur
                 await axios.post(
                     `http://localhost:5000/signup`,
                     {
@@ -49,6 +51,7 @@ export default {
                         password: this.password,
                     }
                 );
+                // après envoi, on efface les champs
                 this.email = "";
                 this.password = "";
             } catch (err) {

@@ -30,8 +30,9 @@
     </div>
   </div>
 </template>
+
 <script>
-// import axios
+// importation axios
 import axios from "axios";
 
 export default {
@@ -43,17 +44,18 @@ export default {
       user_id: localStorage.getItem('user_id'),
     };
   },
-
+  // Exécuter la méthode lors de la création de l'élément
   created() {
     this.getPost();
   },
 
   methods: {
-    // Get All Post
+    // Méthode Vue pour récupérer tous les Posts
     async getPost() {
       try {
         let webApiUrl = "http://localhost:5000/posts";
         let tokenStr = localStorage.getItem("token");
+        // Toujours envoyer dans le header de la requête le token pour que le middleware d'authentification du backend puisse autoriser l'accès
         const response = await axios.get(webApiUrl, { headers: { "Authorization": `Bearer ${tokenStr}` } });
         this.items = response.data;
       } catch (err) {
@@ -61,11 +63,12 @@ export default {
       }
     },
 
-    // Delete Post
+    //  Méthode Vue pour supprimer un Post
     async deletePost(id) {
       try {
         let webApiUrl = `http://localhost:5000/posts/${id}`;
         let tokenStr = localStorage.getItem("token");
+        // Toujours envoyer dans le header de la requête le token pour que le middleware d'authentification du backend puisse autoriser l'accès
         await axios.delete(webApiUrl, { headers: { "Authorization": `Bearer ${tokenStr}` } });
         this.getPost();
       } catch (err) {
@@ -73,8 +76,9 @@ export default {
       }
     },
 
-    // Like Post
+    // Méthode Vue pour liker un post
     async like(id) {
+      // Objet contenant les données envoyées dans le corps de la requête vers l'API
       let params = {
         vote: 1,
         post_id: id,
@@ -83,6 +87,7 @@ export default {
       try {
         let webApiUrl = "http://localhost:5000/posts/vote";
         let tokenStr = localStorage.getItem("token");
+        // Toujours envoyer dans le header de la requête le token pour que le middleware d'authentification du backend puisse autoriser l'accès
         await axios.post(webApiUrl, params, { headers: { "Authorization": `Bearer ${tokenStr}` }})
         .then(response => {
           console.log(response.data.message);
@@ -93,7 +98,9 @@ export default {
       }
     },
 
+    // Méthode Vue pour disliker un post
     async dislike(id) {
+      // Objet contenant les données envoyées dans le corps de la requête vers l'API
       let params = {
         vote: -1,
         post_id: id,
@@ -102,6 +109,7 @@ export default {
       try {
         let webApiUrl = "http://localhost:5000/posts/vote";
         let tokenStr = localStorage.getItem("token");
+        // Toujours envoyer dans le header de la requête le token pour que le middleware d'authentification du backend puisse autoriser l'accès
         await axios.post(webApiUrl, params, { headers: { "Authorization": `Bearer ${tokenStr}` } })
         .then(response => {
           console.log(response.data.message);

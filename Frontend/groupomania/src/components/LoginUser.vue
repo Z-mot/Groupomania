@@ -43,6 +43,7 @@ export default {
     },
     
     methods: {
+        // Création de la méthode Vue permettant la connexion de l'utilisateur
         async loginUser() {
             try {
                 await axios.post(
@@ -52,13 +53,17 @@ export default {
                         password: this.password,
                     }
                 )
+                // Promise
                 .then(response => {
+                    // Si la réponse contient l'email et le token (c'est que la requête backend est valide et l'utilisateur autorisé à se connecter)
                     if (response.data.email && response.data.authorization) {
                         this.email = "";
                         this.password = "";
+                        // on met en localStorage le token, l'user_id et le statut de l'utilisateur
                         localStorage.setItem("token", response.data.authorization);
                         localStorage.setItem("user_id", response.data.user_id);
                         localStorage.setItem("statut", response.data.statut);
+                        // On envoi l'utilisateur sur la page d'accueil
                         this.$router.push("/home");
                     } else {
                         alert("email ou mot de passe incorrect")
