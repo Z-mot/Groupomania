@@ -85,7 +85,7 @@ export default {
             let dataPost = {
               post_name: vm.postName,
               post_image: base64String,
-              user_id: this.userId,
+              user_id: vm.userId,
             }
           vm.updateData(dataPost);
           }
