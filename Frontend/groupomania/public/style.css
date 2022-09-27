@@ -2231,10 +2231,10 @@ table.dataTable thead>tr>td.sorting {
 
 .account-box .account-btn {
     background: #ff9b44;
-    background: -moz-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
-    background: -webkit-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
-    background: -ms-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
-    background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
+    background: -moz-linear-gradient(left, #FFD7D7 0%, #FD2D01 30%,#FD2D01 70%,#FFD7D7 100%);
+    background: -webkit-linear-gradient(left, #FFD7D7 0%, #FD2D01 30%,#FD2D01 70%,#FFD7D7 100%);
+    background: -ms-linear-gradient(left, #FFD7D7 0%, #FD2D01 30%,#FD2D01 70%,#FFD7D7 100%);
+    background: linear-gradient(to left, #FFD7D7 0%, #FD2D01 30%,#FD2D01 70%,#FFD7D7 100%);
     border: 0;
     border-radius: 4px;
     display: block;
@@ -2276,11 +2276,11 @@ table.dataTable thead>tr>td.sorting {
 }
 
 .account-footer a {
-    color: #ff9b44;
+    color: #FD2D01;
 }
 
 .account-footer a:hover {
-    color: #ff9b44;
+    color: #FD2D01;
 }
 
 /*-----------------
