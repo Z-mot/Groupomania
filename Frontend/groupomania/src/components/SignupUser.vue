@@ -6,7 +6,7 @@
                 <form>
                     <div class="form-group">
                         <label>Adresse email</label>
-                        <input class="form-control" type="text" v-model="email">
+                        <input class="form-control" aria-label="Champs email" type="text" v-model="email">
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -14,10 +14,10 @@
                                 <label>Mot de passe</label>
                             </div>
                         </div>
-                        <input class="form-control" type="password" v-model="password">
+                        <input class="form-control" aria-label="Champs mot de passe" type="password" v-model="password">
                     </div>
                     <div class="form-group text-center">
-                        <button class="btn btn-primary account-btn" type="submit" @click="createUser()">Créé un compte</button>
+                        <button class="btn btn-primary account-btn" aria-label="Bouton créer un utilisateur" type="submit" @click="createUser()">Créé un compte</button>
                     </div>
                    
                 </form>

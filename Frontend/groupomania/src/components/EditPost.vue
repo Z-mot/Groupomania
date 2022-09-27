@@ -6,6 +6,7 @@
         <textarea
           class="input form-control"
           type="text"
+          aria-label="Zone de saisie de texte"
           :placeholder="postName"
           v-model="postName"
         ></textarea>
@@ -15,11 +16,11 @@
       <label class="label container-fluid">Image</label>
       <img id="images" :src="postImage" alt="" />
       <div class="control">
-        <input type="file" ref="file" id="file" @change="previewFiles">
+        <input type="file" ref="file" aria-label="Bouton pour charger une image" id="file" @change="previewFiles">
       </div>
     </div>
     <div class="control">
-      <button class="button is-success" @click="updatePost">Mettre à jour</button>
+      <button class="button is-success" aria-label="Bouton pour mettre à jour" @click="updatePost">Mettre à jour</button>
     </div>
   </div>
 </template>

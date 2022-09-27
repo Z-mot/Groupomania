@@ -2,8 +2,7 @@
   <div id="app">
     <div id="nav" class="container-fluid d-flex mb-5">
       <div class="v-25 h-25">
-        <img src="../src/assets/icon-left-font.svg" class="v-25 h-25 z-index-n1 position-absolute "
-          style="left: -1vw ; top: -10vh">
+        <img src="../src/assets/icon-left-font.svg" class="v-25 h-25  position-absolute " style="left: -1vw ; top: -10vh" alt="Logo Groupomania">
       </div>
       <div class="container-fluid d-flex justify-content-end"
         v-if="['Create', 'Edit', 'PostList'].includes($route.name)">
@@ -57,7 +56,7 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+  padding: 5vh;
 }
 
 #nav a {

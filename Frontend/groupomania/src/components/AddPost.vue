@@ -6,6 +6,7 @@
         <textarea
           class="input form-control rounded"
           type="text"
+          aria-label="Zone de saisie de texte"
           placeholder="Que voulez-vous dire?"
           v-model="postName"
         ></textarea>
@@ -14,11 +15,11 @@
 	  <div class="field">
       <label class="label">Image</label>
       <div class="control">
-        <input type="file" ref="file" id="file" @change="previewFiles" >
+        <input type="file" ref="file" id="file" aria-label="Bouton pour charger le fichier" @change="previewFiles" >
       </div>
     </div>
     <div class="control">
-      <button class="button is-success" @click="savePost">Publier</button>
+      <button class="button is-success" aria-label="Bouton pour publier" @click="savePost">Publier</button>
     </div>
   </div>
 </template>

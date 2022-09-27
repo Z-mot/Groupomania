@@ -1,27 +1,27 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Create' }" class="button is-success mt-5 " ><i class="fa-solid fa-plus"></i> Ajouter un nouveau post </router-link>
+    <router-link :to="{ name: 'Create' }" class="button is-success mt-5 " aria-label=" Ajouter un nouveau post"><i class="fa-solid fa-plus"></i> Ajouter un nouveau post </router-link>
     <div class=" container-fluid my-5" v-for="item in items" :key="item.post_id">
       <div class="container  border rounded shadow pb-2  add">
         <div class="container-fluid d-flex justify-content-end pt-2">
           <div class=" d-flex pr-4" v-if="user_id == item.user_id || statut == 1">
-            <router-link :to="{ name: 'Edit', params: { id: item.post_id } }" class="button is-info is-small "><i class="fa-regular fa-pen-to-square lead text-dark"></i>
+            <router-link :to="{ name: 'Edit', params: { id: item.post_id } }" class="button is-info is-small" aria-label=" Modifier le post"><i class="fa-regular fa-pen-to-square lead text-dark"></i>
             </router-link>
           </div>
           <div class="d-flex" v-if="user_id == item.user_id || statut == 1">
-            <a class="button is-danger is-small" role="button" @click="deletePost(item.post_id)">
+            <a class="button is-danger is-small" aria-label="Supprimer le post"  role="button" @click="deletePost(item.post_id)">
               <i class="fa-solid fa-trash lead text-dark"></i></a>
           </div>
         </div>
         <div class="bg-transparent rounded my-1 text-dark font-weight-bold">{{ item.post_name }}</div>
         <div class="d-flex justify-content-end my-1 text-dark font-italic" v-if="statut == 1"> post by User {{ item.user_id}}</div>
-        <img class="rounded my-1 img-fluid" id="images" :src="item.post_image" />
+        <img class="rounded my-1 img-fluid"  :src="item.post_image" />
         <div class="container-fluid d-flex">
-          <div class="container lead" role="button" @click="like(item.post_id)">
+          <div class="container lead" role="button" aria-label="Ajouter un like" @click="like(item.post_id)">
             <i class="fa-regular fa-thumbs-up text-dark"></i>
             <div class="success">{{ item.nombre_like }}</div>
           </div>
-          <div class="container lead" role="button" @click="dislike(item.post_id)">
+          <div class="container lead" role="button" aria-label="Ajouter un dislike" @click="dislike(item.post_id)">
             <i class="fa-regular fa-thumbs-down text-dark"></i>
             <div class="">{{ item.nombre_dislike }}</div>
           </div>

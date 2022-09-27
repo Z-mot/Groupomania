@@ -7,7 +7,7 @@
                 <form>
                     <div class="form-group">
                         <label>Adresse email</label>
-                        <input class="form-control" type="text" v-model="email">
+                        <input class="form-control" type="text" aria-label="Champs email" v-model="email">
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -15,13 +15,13 @@
                                 <label>Mot de passe</label>
                             </div>
                         </div>
-                        <input class="form-control" type="password" v-model="password">
+                        <input class="form-control" type="password" aria-label="Champs mot de passe" v-model="password">
                     </div>
                     <div class="form-group text-center">
-                        <a class="btn btn-primary account-btn" type="submit" @click="loginUser()">Se connecter</a>
+                        <a class="btn btn-primary account-btn" aria-label="Bouton se connecter" tabindex="0" type="submit" @click="loginUser()">Se connecter</a>
                     </div>
                     <div class="account-footer">
-                        <p>Pas encore inscrit ? <router-link :to="{ name: 'Signup' }" class="button is-success mt-5">S'inscrire</router-link></p>
+                        <p>Pas encore inscrit ? <router-link :to="{ name: 'Signup' }" aria-label="Page d'inscription" class="button is-success mt-5">S'inscrire</router-link></p>
                     </div>
                 </form>
             </div>
@@ -75,6 +75,8 @@ export default {
         }
     }
 }
-
-
 </script>
+
+<style>
+
+</style>
