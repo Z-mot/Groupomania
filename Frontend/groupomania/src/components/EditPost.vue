@@ -71,7 +71,7 @@ export default {
           let dataPost = {
             post_name: vm.postName,
             post_image: vm.postImage,
-            user_id: localStorage.getItem("user_id"),
+            user_id: this.userId,
           }
           vm.updateData(dataPost);
         } else {
@@ -85,7 +85,7 @@ export default {
             let dataPost = {
               post_name: vm.postName,
               post_image: base64String,
-              user_id: localStorage.getItem("user_id"),
+              user_id: this.userId,
             }
           vm.updateData(dataPost);
           }
