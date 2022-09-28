@@ -32,7 +32,7 @@ export const loginUser = (req, res) => {
                 user_id: results[0].user_id,
                 email: data.email,
                 authorization: jwt.sign(
-                    { email: data.email },
+                    { email: data.email, statut: results[0].status, user_id: results[0].user_id, },
                     "YOU_NEVER_FIND_IT",
                     { expiresIn: "8h" }
                 )

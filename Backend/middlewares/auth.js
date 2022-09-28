@@ -11,9 +11,11 @@ export const auth = (req, res, next) => {
         const decodedToken = jwt.verify(token, "YOU_NEVER_FIND_IT");
         //assignation de l'email du token décodé à une constante
         const email = decodedToken.email;
+        const statut = decodedToken.statut;
+        const user_id = decodedToken.user_id;
         /*ajout de l'email provenant du token à l'objet request afin 
         qu'il soit exploitable par toutes les routes*/
-        req.auth = { email: email };
+        req.auth = { email: email , statut: statut, user_id: user_id};
         //si tout se passe bien, fonction next pour continuer l'exécution du code
         next();
         //exception (erreur)
